@@ -1,0 +1,29 @@
+#!/usr/bin/python
+
+"""
+This implementation is based heavily off the documentation at the url:
+
+https://docs.google.com/document/d/1KfkZiIluXZ6mMhLWfDX1qAGbvhGRC3ZUzjVIt5FQpp4/pub
+"""
+
+# to gather cli args
+import argparse
+
+args = argparse.ArgumentParser(
+    description='Please enter the IP address and port of the ACServer instance.'
+)
+
+args.add_argument(
+    'host',
+    help   = 'IP of the ACServer instance host'
+)
+
+args.add_argument(
+    '--port',
+    default = 9996, #default ACServer port
+    help    = 'Port that ACServer is running on the host'
+)
+
+args = args.parse_args();
+
+print('Starting ACServer Client.')
