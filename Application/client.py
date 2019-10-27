@@ -1,4 +1,4 @@
-import re, socket, sys
+import re, socket, sys, time
 
 # Connects to ACServer instance at host:port defined using the following interface
 # https://docs.google.com/document/d/1KfkZiIluXZ6mMhLWfDX1qAGbvhGRC3ZUzjVIt5FQpp4/pub
@@ -29,6 +29,7 @@ class Client:
     def connect(self):
         self.handshake()
         self.update()
+
         while True:
             print('telem data')
 
@@ -40,7 +41,8 @@ class Client:
             except Exception:
                 break
 
-            sleep(1)
+            time.sleep(0.25)
+            print('next checkzd')
 
         self.connection.close()
         self.connection = None
@@ -53,15 +55,14 @@ class Client:
             socket.SOCK_DGRAM
         )
         print(self.host + ':' + str(self.port))
-        self.connection.bind((self.host, self.port))
+        #self.connection.bind((self.host, self.port))
 
         # Do the "handshaking" part of the request lifecycle
         # This is not a standard UDP thing, just required to talk to
         # Assetto Corsa
         self.setMode(self.MODE_HANDSHAKE)
 
-        response = self.connection.recvfrom(1024)
-        print(response)
+        response = self.connection.recvfrom(5)
 
     def update(self):
         print('do update')
