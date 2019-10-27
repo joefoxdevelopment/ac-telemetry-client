@@ -9,6 +9,12 @@ https://docs.google.com/document/d/1KfkZiIluXZ6mMhLWfDX1qAGbvhGRC3ZUzjVIt5FQpp4/
 # to gather cli args
 import argparse
 
+# add current dir to python path, allows us to pull modules in
+import sys, os
+sys.path.append(os.getcwd())
+
+from Application.client import Client
+
 args = argparse.ArgumentParser(
     description='Please enter the IP address and port of the ACServer instance.'
 )
@@ -27,3 +33,5 @@ args.add_argument(
 args = args.parse_args();
 
 print('Starting ACServer Client.')
+
+client = Client(args.host, args.port)
