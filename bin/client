@@ -30,8 +30,7 @@ args.add_argument(
     help    = 'Port that ACServer is running on the host'
 )
 
-args = args.parse_args();
-
-print('Starting ACServer Client.')
+args = args.parse_args()
 
 client = Client(args.host, args.port)
+client.connect()
