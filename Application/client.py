@@ -42,6 +42,9 @@ class Client:
             except IOError:
                 pass
 
+        self.connection.close()
+        self.connection = None
+
     def handshake(self):
         print('performing handshake')
 
@@ -60,7 +63,7 @@ class Client:
         response = self.connection.recv()
         print(response)
 
-    def update():
+    def update(self):
         print('do update')
 
     def disconnect(self):
